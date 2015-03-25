@@ -1,8 +1,6 @@
 # Stamped
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/stamped`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem extends Time with a couple useful methods for dealing with iso8601 encoded times in UTC.
 
 ## Installation
 
@@ -22,7 +20,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+``` ruby
+Time.stamp #=> "2015-03-25T00:52:34Z"
+Time.stamp(Time.at(0)) #=> "1970-01-01T00:00:00Z"
+Time.from_stamp("2015-03-25T00:52:34Z") #=> 2015-03-25 00:52:34 UTC
+Time.now.stamp #=> "2015-03-25T00:53:36Z"
+Time.stamp_time #=> 2015-03-25 00:53:44 UTC
+```
 
 ## Development
 
