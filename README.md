@@ -28,6 +28,39 @@ Time.now.stamp #=> "2015-03-25T00:53:36Z"
 Time.stamp_time #=> 2015-03-25 00:53:44 UTC
 ```
 
+## Testing
+
+When testing with time, you often just want to make sure you have a valid timestamp, rather than a specific time. To aid this case, you can use the `be_timestamp` matcher.
+
+``` ruby
+# spec_helper.rb
+require 'stamped/rspec'
+
+# delivery.rb
+class Delivery
+  def initialize(time)
+    @time = time
+  end
+
+  def timestamp
+    @time.stamp
+  end
+
+  # ...
+end
+
+# delivery_spec.rb
+require 'spec_helper'
+
+describe Delivery do
+  it 'has a valid timestamp' do
+    delivery = Delivery.new(3.days.from_now)
+
+    expect(delivery.timestamp).to be_timestamp
+  end
+end
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.

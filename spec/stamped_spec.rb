@@ -21,6 +21,10 @@ describe Time do
       it 'generates the expected stamp' do
         expect(Time.stamp(time)).to eq(timestamp)
       end
+
+      it 'is is formatted correctly' do
+        expect(Time.stamp(time)).to be_timestamp
+      end
     end
 
     context 'when not given a time' do
@@ -28,6 +32,10 @@ describe Time do
         Timecop.freeze(time) do
           expect(Time.stamp).to eq(timestamp)
         end
+      end
+
+      it 'is is formatted correctly' do
+        expect(Time.stamp).to be_timestamp
       end
     end
   end
